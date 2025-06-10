@@ -2,7 +2,7 @@
 
 ## 1. Базовый класс искажения
 
-'''Python
+```Python
 class CognitiveBias:
     def __init__(self, name, trigger, effect):
         self.name = name          # Название искажения
@@ -14,7 +14,7 @@ class CognitiveBias:
         if self.trigger(input_data):
             return self.effect(input_data)
         return input_data
-'''
+```
 
 ## 2. Конкретные искажения как дочерние классы
 
