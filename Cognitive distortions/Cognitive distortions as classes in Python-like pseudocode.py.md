@@ -20,7 +20,7 @@ class CognitiveBias:
 
 ### A. Подтверждающее искажение (Confirmation Bias)
 
-'''Python
+```Python
 class ConfirmationBias(CognitiveBias):
     def __init__(self):
         super().__init__(
@@ -36,11 +36,11 @@ user_belief = {"belief": "Все политики лгут", "info": ["A лжё�
 bias = ConfirmationBias()
 print(bias.distort(user_belief))  
 # Вывод: {"belief": "Все политики лгут", "new_info": ["A лжёт", "C лжёт"]}
-'''
+```
 
 ### B. Эффект Даннинга-Крюгера (Dunning-Kruger Effect)
 
-'''Python
+```Python
 class DunningKrugerEffect(CognitiveBias):
     def __init__(self):
         super().__init__(
@@ -54,11 +54,11 @@ beginner = {"skill_level": 0.1, "self_estimate": None}
 bias = DunningKrugerEffect()
 print(bias.distort(beginner))  
 # Вывод: {"skill_level": 0.1, "self_estimate": 0.9}
-'''
+```
 
 ### C. Каскад доступности (Availability Heuristic)
 
-'''Python
+```Python
 class AvailabilityHeuristic(CognitiveBias):
     def __init__(self):
         super().__init__(
@@ -72,14 +72,14 @@ event = {"is_vivid": True, "base_rate": 0.01}  # Базовый риск 1%, н�
 bias = AvailabilityHeuristic()
 print(bias.distort(event))  
 # Вывод: {"is_vivid": True, "probability_estimate": 0.1}  # Оценка риска как 10%
-'''
+```
 
 ## 3. Композиция искажений
 *(Как искажения взаимодействуют друг с другом)*
 
 ### Система с несколькими искажениями
 
-'''Python
+```Python
 class Mind:
     def __init__(self):
         self.biases = [
@@ -103,11 +103,11 @@ data = {
     "base_rate": 0.0001
 }
 print(mind.process(data))
-'''
+```
 
 ### Вывод:
 
-'''Python
+```Python
 {
     "belief": "Летать опасно",
     "new_info": ["Крушение A", "Крушение C"],  # ConfirmationBias
@@ -116,13 +116,13 @@ print(mind.process(data))
     "is_vivid": True,
     "probability_estimate": 0.001              # AvailabilityHeuristic (0.0001 * 10)
 }
-'''
+```
 
 ## 4. Паттерны для работы с искажениями
 
 ### Декоратор для "очистки" данных
 
-'''Python
+```Python
 def debias(func):
     def wrapper(data):
         # Удаляем поля, созданные искажениями
@@ -137,11 +137,11 @@ def make_decision(data):
 
 print(make_decision(mind.process(data)))
 # Вывод: "Решение на основе {'belief': 'Летать опасно', 'skill_level': 0.15, 'is_vivid': True, 'base_rate': 0.0001}"
-'''
+```
 
 ### Фабрика искажений
 
-'''Python
+```Python
 class BiasFactory:
     @staticmethod
     def create(bias_name):
@@ -155,18 +155,18 @@ class BiasFactory:
 
 factory = BiasFactory()
 bias = factory.create("confirmation")
-'''
+```
 
 ## 5. Тестирование системы
 
 ### UnitTest для ConfirmationBias
 
-'''Python
+```Python
 def test_confirmation_bias():
     data = {"belief": "Кошки умнее собак", "info": ["Исследование A: кошки умны", "Исследование B: собаки умны"]}
     expected = {"belief": "Кошки умнее собак", "new_info": ["Исследование A: кошки умны"]}
     assert ConfirmationBias().distort(data) == expected
-'''
+```
 
 ## Итог
 
@@ -179,12 +179,12 @@ def test_confirmation_bias():
 
 ### Пример из реального кода:
 
-'''Python
+```Python
 # Проверка, как Dunning-Kruger искажает самооценку
 user_skill = 0.3  # Реальный уровень
 print(DunningKrugerEffect().distort({"skill_level": user_skill}))  
 # Выведет: {"skill_level": 0.3, "self_estimate": 0.9} — гипертрофированная уверенность
-'''
+```
 
 Для конкретного искажения можно добавить:
 - **Вес** (насколько сильно искажает),
