@@ -1,5 +1,5 @@
 # Парадокс Браеса: как улучшение дорог может ухудшить пробки
-## Braess' paradox: how improving roads can worsen traffic jams
+## Braes' paradox: how improving roads can worsen traffic jams
 
 ## 1. Суть парадокса
 
